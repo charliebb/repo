@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>土地发布</title>
+		<link rel="stylesheet" type='text/css' href="../css/common.css" >
+		<link rel="stylesheet" type='text/css' href="../css/deploy.css" >
+	</head>
+	<body>
+		<!-- 头部 -->
+		<header>
+			<div class="yihao-top">
+				<!-- 头部导航 -->
+				<div class="navigation">
+					<div class="navi-wrap">
+						<div class="yihao-top-nav-1 f-fl">
+							<ul class="yihao-top-nav-ul-1 ">
+								<li class="yihao-top-nav-li " id="yihao-top-home-link">
+									<a class="yihao-top-nav-link" href="/" id="yihao-top-link-home">首页</a>
+								</li>
+								<li class="top-nav-topic-selector yihao-top-nav-li " id="yihao-top-nav-find">
+									<a class="yihao-top-nav-link" href="/topic" id="top-nav-dd-topic">我要找地</a>
+								</li>
+								<li class="yihao-top-nav-li " id="yihao-top-nav-sell">
+									<a class="yihao-top-nav-link" href="/sell">我要卖地</a>
+								</li>
+							</ul>
+						</div>
+						<a class="yihao-logo f-fl" href="/"></a>
+						<div class="yihao-top-nav-2 f-fl">
+							<ul class="yihao-top-nav-ul-2 ">
+								<li class="yihao-top-nav-li " id="yihao-top-home-link">
+									<a class="yihao-top-nav-link" href="/" id="yihao-top-link-home">精选土地</a>
+								</li>
+								<li class="top-nav-topic-selector yihao-top-nav-li " id="yihao-top-nav-find">
+									<a class="yihao-top-nav-link" href="/topic" id="top-nav-dd-service">服务保障</a>
+								</li>
+								<li class="yihao-top-nav-li " id="yihao-top-nav-login">
+									<a class="yihao-top-nav-link" href="#">注册/登陆</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- 头部背景 -->
+				<div class="nav-bg-img">
+					<img src="../images/deploy/bg.jpg" alt="">
+					<!-- 文字介绍 -->
+					<div class="hd-bg-des">
+						<div>
+							<p>最真实的土地信息， 一手的土地资源， 贴心满意的服务</p>
+							<p>我们更懂得土地</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- 内容 -->
+		<div class="container" >
+
+		    <div class="content-box">
+	        	<!--土地信息begin -->
+	        		<div class="land-info">
+	        			<ul class="f-cl">
+	        				<li class="land-info-tt f-fl">土地信息: </li>
+	        				<li class="f-fl"><a href="">已发布(0)</a></li>
+	        				<li class="f-fl"><a href="">已通过审核(0)</a></li>
+	        				<li class="f-fl"><a href="">未审核(0)</a></li>
+	        				<li class="f-fl"><a href="">未交易(0)</a></li>
+	        				<li class="f-fl"><a href="">已交易(0)</a></li>
+	        			</ul>
+	        			<p class="land-info-des">*标记为必填项</p>
+	        		</div>
+	        	<!--土地信息end -->
+	        	<!-- begin -->
+	        		<form  id="loginform" action="user_add.php" method="post" name="form1">
+	        			<div class="form-1">
+	        				<div class="release-logo">
+		        				<img src="../images/deploy/release_info.jpg" alt="">
+		        				<p class="zh-des">发布信息</p>
+		        				<p class="en-des">Release Information</p>
+		        			</div>
+		        			<div class="form-tb">
+			        			<div class="margin10"><span class="tt">标题</span><input type="text"></div>
+		        				<div class="margin10">
+		        					<span class="tt">所在地区</span>
+		        					<select name="val">
+										<option value ="广东" selected="true">广东</option>
+										<option value ="四川">四川</option>
+										<option value ="浙江">浙江</option>
+									</select>省
+		        					<select name="val">
+										<option value ="广州" selected="true">广州</option>
+										<option value ="四川">四川</option>
+										<option value ="浙江">浙江</option>
+									</select>市
+									<select name="val">
+										<option value ="ww" selected="true">ww</option>
+										<option value ="gg">gg</option>
+										<option value ="cc">cc</option>
+									</select>区县
+									<select name="val">
+										<option value ="xx" selected="true">xx</option>
+										<option value ="gg">gg</option>
+										<option value ="ee">ee</option>
+									</select>镇
+									<select name="val">
+										<option value ="a" selected="true">a</option>
+										<option value ="b">b</option>
+										<option value ="c">c</option>
+									</select>村
+	        					</div>
+		        				<div class="margin10"><span class="tt">详细地址</span><input type="textarea"></div>
+		        				<div class="margin10">
+		        					<span class="tt">土地类型</span>
+		        					<select name="land-type">
+										<option value ="A" selected="true">A</option>
+										<option value ="B">B</option>
+										<option value ="C">C</option>
+									</select>
+		        					<span class="tt">流转类型</span>
+		        					<select name="transform-type">
+										<option value ="A" selected="true">A</option>
+										<option value ="B">B</option>
+										<option value ="C">C</option>
+									</select>
+		        					<span class="tt">可流转年限</span>
+		        					<select name="available-time">
+										<option value ="A" selected="true">A</option>
+										<option value ="B">B</option>
+										<option value ="C">C</option>
+									</select>
+	        					</div>
+		        				<div class="margin10">
+		        					<span class="tt">面积*</span><input type="text">
+		        					<select name="val">
+										<option value ="亩" selected="true">亩</option>
+										<option value ="千亩">千亩</option>
+										<option value ="万亩">万亩</option>
+									</select>
+	        					</div>
+	        					<div class="margin10">
+		        					<span class="tt">单价（元/年）</span><input type="text">
+		        					<span class="tt">总价/一口价（元）</span><input type="text">
+	        					</div>
+		        				<div class="margin10">
+		        					<span class="tt">联系人*</span><input type="text">
+		        					<span class="tt">联系人电话*</span><input type="text">
+	        					</div>
+	        					<div class="margin10">
+		        					<span class="tt">详情描述</span><input type="textarea">
+	        					</div>
+		        			</div>
+	        			</div>
+	        			<div class="form-2">
+	        				<div class="release-logo">
+		        				<img src="../images/deploy/upload.jpg" alt="">
+		        				<p class="zh-des">上传图片</p>
+		        				<p class="en-des">Upload</p>
+		        				<input type="file" >
+		        			</div>
+	        			</div>
+	        			<div class="form-3">
+	        				<div class="release-logo">
+		        				<img src="../images/deploy/edit_detail.jpg" alt="">
+		        				<p class="zh-des">编辑详细</p>
+		        				<p class="en-des">Edit Detail</p>
+		        			</div>
+		        			<div class="rate f-cl">
+		        				<div class="rate-l f-fl"><p>总体评价</p></div>
+		        				<div class="rate-r f-fr">
+		        					<span class="score">A+</span>
+		        					<select name="rate" name=">">
+										<option value ="A+">A+</option>
+										<option value ="A">A</option>
+										<option value ="B+">B+</option>
+										<option value ="B">B</option>
+										<option value ="C+">C+</option>
+										<option value ="C">C</option>
+									</select>
+		        				</div>
+		        			</div>
+		        			<div class="assessment-box f-cl">
+		        				<div class="accessment-l f-fl">
+		        					<ul>
+		        						<li><span class="tt">权属类型</span><input type="text"></li>
+		        						<li><span class="tt">权属年限</span><input type="text"></li>
+		        						<li><span class="tt">权属期间</span><input type="text"></li>
+		        					</ul>
+		        					<ul>
+			        					<li><span class="tt">防洪排涝能力</span><input type="text"></li>
+			        					<li><span class="tt">地下水埋深</span><input type="text"></li>
+		        					</ul>
+		        					<div>
+		        						<div class="tb-tt">地上设施</div>
+			        					<div class="tb-ctn f-cl">
+			        						<div class="ctn-l f-fl">
+			        							<ul>
+					        						<li><span class="sel">√</span><span class="tt">有水井</span></li>
+					        						<li><span class="sel">√</span><span class="tt">畜禽舍</span></li>
+					        						<li><span class="sel">√</span><span class="tt">养殖池塘</span></li>
+					        						<li><span class="sel">√</span><span class="tt">蓄水池</span></li>
+					        						<li><span class="sel">√</span><span class="tt">育种育苗场</span></li>
+					        						<li><span class="sel">√</span><span class="tt">晾晒场</span></li>
+					        					</ul>
+			        						</div>
+			        						<div class="ctn-r f-fr">
+			        							<ul>
+					        						<li><span class="sel">√</span><span class="tt">温室大棚</span></li>
+					        						<li><span class="sel">√</span><span class="tt">育种育苗场</span></li>
+					        						<li><span class="sel">√</span><span class="tt">生产看护房</span></li>
+					        						<li><span class="sel">√</span><span class="tt">仓库</span></li>
+					        						<li><span class="sel">√</span><span class="tt">农机房</span></li>
+					        						<li><span class="sel">√</span><span class="tt">道路</span></li>
+					        					</ul>
+			        						</div>
+			        					</div>
+		        					</div>
+		        				</div>
+		        				<div class="accessment-r f-fr">
+		        					<ul>
+		        						<li><span class="tt">供水条件</span><input type="text"></li>
+		        						<li><span class="tt">供电条件</span><input type="text"></li>
+		        						<li><span class="tt">网络状况</span><input type="text"></li>
+		        					</ul>
+		        					<ul>
+		        						<li><span class="tt">灌溉水源</span><input type="text"></li>
+		        						<li><span class="tt">水源质量</span><input type="text"></li>
+		        					</ul>
+		        					<div>
+		        						<div class="tb-tt">适宜利用方式</div>
+			        					<div class="tb-ctn f-cl">
+			        						<div class="ctn-l f-fl">
+			        							<ul>
+					        						<li><span class="sel">√</span><span class="tt">种植农业(种植、养殖)</span></li>
+					        						<li><span class="sel">√</span><span class="tt">休闲农业</span></li>
+					        						<li><span class="sel">√</span><span class="tt">乡村旅游</span></li>
+					        					</ul>
+			        						</div>
+			        						<div class="ctn-r f-fr">
+			        							<ul>
+  
+					        					</ul>
+			        						</div>
+			        					</div>
+		        					</div>
+		        					<div>
+		        						<div class="tb-tt">土壤条件</div>
+			        					<ul>
+			        						<li><span class="tt">表面土壤质地</span><input type="text"></li>
+			        						<li><span class="tt">土壤酸碱度</span><input type="text"></li>
+			        						<li><span class="tt">土种</span><input type="text"></li>
+			        						<li><span class="tt">有机质含量</span><input type="text"></li>
+			        					</ul>
+		        					</div>
+		        					<div>
+		        						<div class="tb-tt">交通情况</div>
+			        					<ul>
+			        						<li><span class="tt">有机场</li>
+			        						<li><span class="tt">有高铁</li>
+			        						<li><span class="tt">有铁路</li>
+			        						<li><span class="tt">有高速路</li>
+			        						<li><span class="tt">有国道</li>
+			        						<li><span class="tt">有港口</li>
+			        					</ul>
+		        					</div>
+		        				</div>
+		        			</div>
+	        			</div>
+	        			<div class="submit-btn-box">
+                            <input type="button" name="submit-btn" value="提交上传"  class="submit-btn">
+                            <input type="hidden" id="returnurl" name="returnurl" value="/">
+                        </div>
+	        		</form>
+	        	<!-- end -->
+	        	<!-- begin -->
+	        	<!-- end -->
+	        </div>
+		</div>
+		<!-- 底部 -->
+		<footer>
+			<div class="footer">
+				<!-- 底部搜索框 -->
+				<div class="ft-search-wrap">
+					<div class="ft-search"> 
+						<a href="#" class="ft-yihao-logo"></a>
+						<input class="ft-search-input" type="text" placeholder="搜索土地">
+						<a href="#" class="ft-search-btn"  >GO</a>
+					</div>
+				</div>
+				<div class="ft-line-wrap">
+					<div class="ft-line"></div>
+				</div>
+
+				<div class="ft-helper f-cl">
+					<div class="helper-item f-fl">
+						<p class="hotline-tt">24小时客服热线</p>
+						<p class="hotline">XXX XXX XXX</p>
+						<p class="hotline-des">一号土地网在全国已有区域流转中心120家、土地挂牌面积3.4亿亩。</p>
+					</div>
+					<div class="helper-item f-fl">
+						<a href="" class="how-to-find"><i class="icon"></i> 如何找到地</a>
+						<a href="" class="send-req">发布需求信息</a>
+						<a href="" class="entrust">委托找地</a>
+					</div>
+					<div class="helper-item f-fl">
+						<a href="" class="want-sell"><i class="icon"></i> 我要卖地</a>
+						<a href="" class="send-req">发布土地</a>
+						<a href="" class="entrust-poxy">委托经纪人</a>
+					</div>
+					<div class="helper-item f-fl">
+						<a href="" class="work-company">合作伙伴</a>
+					</div>
+				</div>
+			</div>
+			<!-- 底部 -->
+			<div class="footer-btm">
+				<div class="copyright f-cl">
+					<div class="copyright-wrap f-fl">
+						©2015 Cishop.All rights reserved
+					</div>
+					<div class="copyright-wrap f-fr">
+						<a class="share-a" href="#">
+							<div class="icon-wrapper">
+								<i class="ft-wb"></i>
+							</div>
+						</a>
+						<a class="share-a" href="#">
+							<div class="icon-wrapper">
+								<i class="ft-wx"></i>
+							</div>
+						</a>
+						<a class="share-a" href="#">
+							<div class="icon-wrapper">
+								<i class="ft-rr"></i>
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- 遮罩层 -->
+		<section class="u-mark " style="display: none;"></section>
+		<!-- 登陆注册  -->
+		<section class="m-login" style="display: none;">
+			<div class="login-menu" >
+				<ul class="menu-ul f-cl">	
+					<a id="login" class="j-active"><li class="f-fl"><div class="sign-in-tag ">登陆 sign in</div></li></a>
+					<div class="li-line f-fl"></div>
+					<a id="register" ><li class="f-fl"><div class="sign-up-tag">注册 sign up</div></li></a>
+				</ul>
+			</div>
+			<div class="login-wrapper">
+				<div class="mobile-wrapper">
+					<i class="mobile-icon"></i>
+					<input class="input-mobile" type="tel" maxlength="11" placeholder="11位电话号码">
+				</div>
+				<div class="password-wrapper">
+					<i class="psw-icon"></i>
+					<input class="input-password" type="password" maxlength="20" placeholder="请输入密码">
+				</div>
+				<div class="info_list">
+					<label for="login_form_savestate" title="建议在网吧或公共电脑上取消该选项。" >
+                		<input type="checkbox" class="auto_login" node-type="savestate" checked="checked" > 自动登录
+            		</label>
+            		<label for="login_form_savestate" title="建议在网吧或公共电脑上取消该选项。" >
+                		<input type="checkbox" class="remember_psw" node-type="savestate"  > 记住密码
+            		</label>
+            		<a class="forget_psw" href="#">忘记密码</a>
+				</div>
+				<div class="sign-in">
+					<a href=""><div class="sign-in-btn">登录</div></a>
+				</div>
+			</div>
+			<div class="register-wrapper">
+				<div class="">
+					<i class="mobile-icon"></i>
+					<input class="input-mobile" name="mobile" type="tel" maxlength="11" placeholder="11位电话号码">
+				</div>
+				<div class="">
+					<i class="name-icon"></i>
+					<input class="input-name" name="name" type="text" maxlength="20" placeholder="请输入昵称">
+				</div>
+				<div class="">
+					<i class="psw-icon"></i>
+					<input class="input-password" name="password" type="password" maxlength="20" placeholder="请输入密码">
+				</div>
+				<div class="">
+					<i class="psw_2-icon"></i>
+					<input class="input-password_2" name="password_2" type="password" maxlength="20" placeholder="再次输入密码">
+				</div>
+				<div class="submit">
+					<a href=""><div class="submit-btn">提交</div></a>
+				</div>
+			</div>
+		</section>
+		<script type="text/javascript" src="../js/sea-js-module/seajs/sea.js"></script>
+		<script type="text/javascript" src="../js/config-seajs.js"></script>
+		<script>
+			//配置seajs根路径
+			seajs.config({
+				base: '../js'
+			});
+		</script>
+		<script>
+			seajs.use('detail.js');
+		</script>
+	</body>
+</html>
+

@@ -1,0 +1,33 @@
+.content-wrap{width: 960px; margin: 0 auto; padding-top: 60px; padding-bottom: 136px;}
+.sidebar{width: 220px;/* height: 690px;*/ border: 1px solid #c8c5c4;   margin-right: 10px; margin-top: 5px;}
+.hot-search{position: relative; width: 220px; /*height: 275px;*/ border-bottom: 1px solid #c8c5c4;}
+.hot-tt{color: red; padding: 15px; font-size: 16px;}
+.hot-search-ul{padding: 0 15px 15px 15px;}
+.hot-search-li{padding-right: 10px;padding-bottom: 10px; font-size: 14px;}
+.search-result{/*position: absolute;bottom: 0;*/ padding-left: 15px;margin-bottom: 10px;}
+.key-word{}
+.key-word .key-tt{font-size: 16px;}
+.key-word .key-ctn{font-size: 16px;}
+.total-num{margin-top: 10px;}
+.total-num .total-tt{font-size: 16px;}
+.total-num .total-count{font-size: 16px;}
+
+.search-condition{/*padding: 15px; font-size: 16px;*/}
+.condition-tt{padding: 20px 15px;}
+.condition-tt-des{ font-size: 16px; border-bottom:1px dashed #c8c5c4; padding-bottom: 5px;}
+.district-tt .district-tt-des, .area-tt .area-tt-des, .develope-tt .develope-tt-des{padding-left: 15px;}
+.district-tt .district-result, .area-tt .area-result, .develope-tt .develope-result{padding-left: 15px; color: #97b0cd;}
+.district-ul, .area-ul, .develope-ul{padding: 15px 0 15px 40px;}
+.district-ul .district-li, .area-ul .area-li, .develope-ul .develope-li{margin-right: 10px;padding-bottom: 10px;}
+.more-district, .more-area, .more-develope{text-align: right; padding-right: 20px;margin-bottom: 10px; color: red;}
+
+
+
+.item-li{/*width: 220px; height: 220px;*/ padding: 5px; /*text-align: center;*/ /*border: 1px solid #c8c5c4;*/}
+.item-wrap{width: 220px; height: 220px; border: 1px solid #c8c5c4; position: relative;}
+.item-wrap img{width: 100%;}
+.item-description{padding: 10px; font-size: 14px; position: absolute; bottom: 0; color: #fff;   width: 200px;   z-index: 100;} 
+.price{display: none;}
+.des-mask{ position: absolute; bottom: 0; background-color: #000000; opacity: 0.3;   width: 100%; height: 50px;   z-index: 99; display: none;} 
+
+.des-mask1{ position: absolute;  left: 0; bottom: 0; background-color: #000000; opacity: 0.3;   width: 100%; height: 50px;   z-index: 99;} 

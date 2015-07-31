@@ -1,0 +1,792 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>ajax文件上传</title>
+    
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+    <meta http-equiv="expires" content="0">    
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+    <link rel="stylesheet" type="text/css" href="validate/ajaxfileupload.css" />
+    <script type="text/javascript" src="validate/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript" src="validate/ajaxfileupload.js" ></script>
+    <script type="text/javascript">
+    $(function(){
+       //上传图片
+       $("#btnUpload").click(function() {
+               alert(ajaxFileUpload());
+       });
+    });
+    function ajaxFileUpload() {
+        // 开始上传文件时显示一个图片
+        $("#wait_loading").ajaxStart(function() {
+            $(this).show();
+        // 文件上传完成将图片隐藏起来
+        }).ajaxComplete(function() {
+            $(this).hide();
+        });
+        var elementIds=["flag"]; //flag为id、name属性名
+        $.ajaxFileUpload({
+            url: 'uploadAjax.html', 
+            type: 'post',
+            secureuri: false, //一般设置为false
+            fileElementId: 'file', // 上传文件的id、name属性名
+            dataType: 'text', //返回值类型，一般设置为json、application/json
+            elementIds: elementIds, //传递参数到服务器
+            success: function(data, status){  
+                alert(data);
+            },
+            error: function(data, status, e){ 
+                alert(e);
+            }
+        });
+        //return false;
+    }
+    </script>
+  </head>
+  
+  <body>
+    <div id="wait_loading" style="padding: 50px 0 0 0;display:none;">
+        <div style="width: 103px;margin: 0 auto;"><img src="<%=path %>/images/loading.gif"/></div>
+        <br></br>
+        <div style="width: 103px;margin: 0 auto;"><span>请稍等...</span></div>
+        <br></br>
+    </div>
+    <input type="file" id="file" name="file"><br/>
+    <input type="hidden" id="flag" name="flag" value="ajax文件上传"/>
+    <input type="button" id="btnUpload" value="上传图片" />
+  </body>
+</html>
+
+
+
+<!-- 销券列表 -->
+<!-- 券状态 0 未销券 1 已销券 2 已取消-->
+<script id="common-product-template" type="x-handlebars-template">
+	<div class="ticket-body">
+		{{#each data}}
+		<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tickTab">
+			<tr>
+                <td width="50%">
+                    <p class="p-tit">{{data.ItemName}}免预约测试票</p>
+                    <p class="p-date">有效期：{{data.StartDate}}2015-05-16 至 {{data.EndDate}}2015-06-16</p>
+                </td>
+                <td width="30%">{{data.Number}}5张</td>
+
+                {{#compare data.VoucherNoStatus '==' 0 }}
+                	{{#compare data.ItemStatus '==' 3 }}
+	               	<td  width="20%">
+	                    <p class="txt_st4">已过期</p>
+	                </td>
+	                {{/compare}}
+
+	                {{#compare data.ItemStatus '==' 2 }}
+	                <td  width="20%" style="min-width: 180px;">
+	                    <div class="picker">
+	                      	<a href="javascript:;" class="pbtn pbtn-less pbtn-disable">-</a>
+	                      	<span class="count">1</span>
+	                      	<a href="javascript:;" class="pbtn pbtn-more">+</a>
+	                    </div>
+	                </td>
+	                {{/compare}}
+
+	                {{#compare data.ItemStatus '==' 3 }}
+	               	<td  width="20%">
+                        <p class="tag1">未到使用日期</p>
+                    </td>
+	                {{/compare}}
+
+                {{/compare}}
+
+                {{#compare data.VoucherNoStatus '==' 1 }}
+                <td  width="20%">
+                    <p class="txt_st2">已销券</p>
+                </td>
+                {{/compare}}
+
+                {{#compare data.VoucherNoStatus '==' 2 }}
+                <td  width="20%">
+                    <p class="txt_st3">已取消</p>
+                </td>
+                {{/compare}}
+          	</tr>
+      	</table>
+      	{{/each}}
+  	</div>
+</script>
+
+
+<!-- 电子销券列表 -->
+<!-- 券状态 0 未销券 1 已销券 2 已取消-->
+<script id="common-product-template" type="x-handlebars-template">
+  {{#compare data.isEleticket '==' 1 }}
+  <div class="tick-ul" isEleticket=1>
+   	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	{{#each data.VoucherList}}
+      <tr class="Eleticket" ticketId={{ItemId}} total={{Number}}>
+        <td width="80%" class="tick-name">{{ItemName}}</td>
+        <td width="20%" class="tick-num" count={{Number}}>{{Number}}张</td>
+      </tr>
+    </table>
+    {{/each}}
+    <div class="total">请核实：合计销券 <span>8 张</span></div>
+  </div>
+  <div class="btn-box">
+      <a href="" class="btn_confirm">确定</a>
+      <a href="" class="btn_can">取消</a>
+  </div>
+  {{/compare}}
+</script>
+
+
+<!-- 电子券提示弹窗 -->
+              <div class="EleticketList alertBox border8" style="display:block;">
+                  <div class="tick-ul">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                      <tr>
+                        <td width="80%" class="tick-name">广州白云塔云塔光云塔光广州白云</td>
+                        <td width="20%" class="tick-num">5张</td>
+                      </tr>
+                      <tr>
+                        <td width="80%" class="tick-name">广州白云塔云塔光云塔光光该功能</td>
+                        <td width="20%" class="tick-num">5张</td>
+                      </tr>
+                      <tr>
+                        <td width="80%" class="tick-name">广州白云塔云塔光云塔光光该功能</td>
+                        <td width="20%" class="tick-num">5张</td>
+                      </tr>
+                      <tr>
+                        <td width="80%" class="tick-name">广州白云塔云塔光云塔光光该功能</td>
+                        <td width="20%" class="tick-num">5张</td>
+                      </tr>
+                    </table>
+                    <div class="total">请核实：合计销券 <span>8 张</span></div>
+                  </div>
+                  <div class="btn-box">
+                      <a href="" class="btn_confirm">确定</a>
+                      <a href="" class="btn_can">取消</a>
+                  </div>
+              </div>
+                <div class="ticketlist">
+                    <div class="tit">
+                        <ul>
+                            <li class="li1">产品名称</li>
+                            <li class="li2">数量</li>
+                            <li class="li3">选择销券张数</li>
+                        </ul>
+                    </div>
+                    <div class="ticket-body">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tickTab">
+                          <tr>
+                            <td width="50%">
+                                <p class="p-tit">广州白云塔云塔光云塔光光该功能</p>
+                                <p class="p-date">有效期：2015-05-16 至 2015-06-16</p>
+                            </td>
+                            <td width="30%">5张</td>
+                            <td  width="20%" style="min-width: 180px;">
+                                <div class="picker">
+                                  <a href="javascript:;" class="pbtn pbtn-less pbtn-disable">-</a>
+                                  <span class="count">1</span>
+                                  <a href="javascript:;" class="pbtn pbtn-more">+</a>
+                                </div>
+                            </td>
+                          </tr>
+                        </table>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tickTab gray" >
+                          <tr>
+                            <td width="50%">
+                                <p class="p-tit">广州白云塔云塔光云塔光光该功能</p>
+                                <p class="p-date">有效期：2015-05-16 至 2015-06-16</p>
+                            </td>
+                            <td width="30%">5张</td>
+                            <td  width="20%">
+                                <p class="tag1">未到使用日期</p>
+                            </td>
+                          </tr>
+                        </table>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tickTab gray" >
+                          <tr>
+                            <td width="50%">
+                                <p class="p-tit">广州白云塔云塔光云塔光光该功能</p>
+                                <p class="p-date">有效期：2015-05-16 至 2015-06-16</p>
+                            </td>
+                            <td width="30%">5张</td>
+                            <td  width="20%">
+                                <p class="txt_st2"></p>
+                            </td>
+                          </tr>
+                        </table>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tickTab gray" >
+                          <tr>
+                            <td width="50%">
+                                <p class="p-tit">广州白云塔云塔光云塔光光该功能</p>
+                                <p class="p-date">有效期：2015-05-16 至 2015-06-16</p>
+                            </td>
+                            <td width="30%">5张</td>
+                            <td  width="20%">
+                                <p class="txt_st3"></p>
+                            </td>
+                          </tr>
+                        </table>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tickTab gray" >
+                          <tr>
+                            <td width="50%">
+                                <p class="p-tit">广州白云塔云塔光云塔光光该功能</p>
+                                <p class="p-date">有效期：2015-05-16 至 2015-06-16</p>
+                            </td>
+                            <td width="30%">5张</td>
+                            <td  width="20%">
+                                <p class="txt_st4"></p>
+                            </td>
+                          </tr>
+                        </table>
+                    </div>
+                    <div class="tips">
+                      <p>说明：顾客取消订单或修改订单后会提示“已取消”，券号未在有效期范围内使用，均会提示“已过期”; </p>
+                    </div>
+                </div>
+
+
+
+ <div class="messageBox alertBox" style="display:none;">
+      <div class="alertTit">
+          <p><span></span>销券失败，券号已过期！</p>
+      </div>
+      <div class="alertbody">
+        <p>销   券： 1784 2223 1134  ( <span>已过期  合计：3张</span>）</p>
+        <p>信   息： (免预约)广州塔白云星空观光门票 2张</p>
+        <p>有效期： 2015-04-16 至 2015-05-16</p>
+      </div>
+      <div class="alert_tips">
+        <p>说明：已经过期的券号不能进行销券操作，顾客可通过400-118-1166电话申请退款。</p>
+      </div>
+      <span class="btn_off"></span>
+  </div>
+
+
+
+<table class="calTable">
+  <tr class="calend-m-head">
+  	<td colspan="7">' + (sDate.getMonth() + 1) + '月</td>
+  </tr>
+</talbe>
+<tr class="calend-m-weekday">
+	<td>日</td>
+	<td>一</td>
+	<td>二</td>
+	<td>三</td>
+	<td>四</td>
+	<td>五</td>
+	<td>六</td>
+</tr>
+<tr>
+	<td class="calendDay calend-m-day"></td>
+	<td class="calendDay calend-m-day"></td>
+	<td class="calendDay calend-m-day"></td>
+	<td class="calendDay calend-m-day"></td>
+	<td class="calendDay calend-m-day"></td>
+	<td class="calendDay calend-m-day"></td>
+	<td class="calendDay calend-m-day"></td>
+</tr>
+
+
+<script type="text/javascript">
+//倒计时
+var countDown = (function () {
+    var self = {}
+    //时间日期小于10前面的加0
+    function datePlusZero(num) {
+        if (num < 10)
+            num = '0' + num;
+        return num;
+    }
+    // 剩余毫秒数初始化并开始读秒
+    function _init(leftTime) {
+        self.leftTime = leftTime
+        self.interval = setInterval(count, 1000)
+        setTimeout(count, 0)
+    }
+    function count() {
+        var s = datePlusZero(parseInt(self.leftTime / 1000 % 60))
+        var m = datePlusZero(parseInt(self.leftTime / (60 * 1000) % 60))
+        var h = datePlusZero(parseInt(self.leftTime / (60 * 60 * 1000) % 24))
+        var d = datePlusZero(parseInt(self.leftTime / (24 * 60 * 60 * 1000)))
+        // 触发监听
+        for (var i in self.listeners) {
+            if (self.listeners[i]) {
+                self.listeners[i]({
+                    sec: s,
+                    min: m,
+                    hour: h,
+                    day: d,
+                    total: self.leftTime
+                })
+            }
+        }
+        if (self.leftTime <= 0) {
+            clearInterval(self.interval)
+            self.interval = null
+        } else {
+            self.leftTime -= 1000
+        }
+    }
+    // 添加侦听器，每读一秒触发一次
+    function _addTimeListener(name, fun) {
+        this.listeners[name] = fun
+    }
+    function _removeTimeListener(name) {
+        this.listeners[name] = null
+    }
+    return self = {
+        leftTime: 0,
+        init: _init,
+        listeners: {},
+        addTimeListener: _addTimeListener,
+        removeTimeListener: _removeTimeListener
+    }
+})()
+
+
+
+var Event = {
+	_listeners : {
+		click:function() {
+
+		},
+		touchend:function() {
+
+		},
+		touchmove:function() {
+
+		}
+	}
+	addEvent:function(type, fn) {
+		if(typeof this._addTimeListener[type] === "undefined") {
+			this._listeners[type] = [];
+		}
+		if(typeof fn == "function") {
+			this._listeners[type].push(fn);
+		}
+	}
+}
+
+
+</script>
+
+<section class="m-creditCard">
+	<div class="card-tt">
+		<p>选择支付银行</p>
+	</div>
+	<div class="card-ctn">
+		<ul class="">
+			<li class="li-1">建设银行</li>
+            <li class="li-2">招商银行</li>
+            <li class="li-3">交通银行</li>
+            <li class="li-4">中国银行</li>
+            <li class="li-5">工商银行</li>
+            <li class="li-6">农业银行</li>
+            <li class="li-7">兴业银行</li>
+            <li class="li-8">中信银行</li>
+            <li class="li-9">浦发银行</li>
+            <li class="li-10">广发银行</li>
+            <li class="li-11">光大银行</li>
+            <li class="li-12">平安银行</li>
+            <li class="li-13">中国邮政储蓄银行</li>
+            <li class="li-14">民生银行</li>
+            <li class="li-15">平安银行</li>
+		</ul>
+	</div>
+</section>
+
+ <li class="li-1">
+    <span class="li-icon"></span>
+    <span class="li-tt">平安银行</span>
+    <div class="li-radio" style="display:inline-block;">
+        <input id="payZFB" name="pay" type="radio" >
+        <label for="payZFB"></label>
+    </div>
+</li>
+
+<script>
+	var a = 'https://wappaywg.bestpay.com.cn/payWapDirect.do
+	?ATTACH=&
+	ATTACHAMOUNT=0.00&
+	BACKMERCHANTURL=http:%2f%2fyaocf.vicp.net:777%2fv2%2fpayment%2fWingMPayUnitNotify&
+	BANKID=CCB_B2C&
+	BUSICODE=0001&
+	CURTYPE=RMB&CUSTOMERID=&
+	ENCODETYPE=1&
+	MAC=912B8611CA619A68F4A1EBBD7A763870&
+	MERCHANTID=02440102024131000&
+	MERCHANTURL=http:%2f%2fmt.yaochufa.com%2fpaysuccess%3forderNo%3d1401151586287ff624&
+	ORDERAMOUNT=1.00&
+	ORDERDATE=20150710143340&
+	ORDERREQTRANSEQ=1401151586287ff624&
+	ORDERSEQ=1401151586287ff624&
+	PRODUCTAMOUNT=1.00&
+	PRODUCTDESC=%E9%85%B7%E6%97%85%E8%AE%A2%E5%8D%95%EF%BC%8C1401151586287&PRODUCTID=08&
+	SUBMERCHANTID=02440102024131000&
+	TMNUM='
+</script>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php printf('%s',Yii::app()->params['ebooking_title']['other']); ?></title>
+<style type="text/css">
+*{ 
+   margin:0 auto;
+   padding:0;
+   font-size:13px;
+   font-family:"微软雅黑","黑体","宋体"; 
+   color:#000;
+}
+.table1{
+	padding-bottom:20px;
+	}
+.table2{
+	border:#000 1px solid;
+	border-left:#000 2px solid;
+	border-top:#000 2px solid;
+	}
+.table2 tr{
+	padding-top:2px;
+	}
+.table2 td{
+	border-right:#000 1px solid;
+	border-bottom:#000 1px solid;
+    text-indent:3px;
+	}
+.table3{
+	padding-top:6px;
+	}
+.table3 td{
+	text-indent:3px;
+	}
+.table4{
+	padding-top:6px;
+	}
+.table4 td{
+	text-indent:3px;
+	}
+.ptop h1{
+	 height:25px;
+	 font-size:16px;
+	 line-height:25px;
+     letter-spacing:2px;
+	}
+.ptop h2{
+	 height:20px;
+	 line-height:20px;
+	 font-size:15px;
+	 color:#333;
+	}
+.ptop h3{
+	 height:20px;
+	 line-height:20px;
+	 color:#222;
+	}
+.btn-blue{
+  display: inline-block;
+  padding: 8px 15px;
+  background: #4d90fe;
+  color: #fff;
+  margin: 10px 0 20px;
+}
+.fn-clear{clear: both;}
+</style>
+<style  type="text/css"  media="print">
+    .noprint{ display:none}
+</style>
+</head>
+<?php
+$itemDeductionRemarkJson = $detail['itemDeductionRemark'];
+$itemDeductionRemarkArr = json_decode($itemDeductionRemarkJson,true);
+//var_dump($itemDeductionRemarkArr);exit;
+//格式化特殊要求
+//$detail['remark'] = '北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷dsafasdf旅致远信息技术有限公司北京酷旅致远信息技术900000有限公司北京酷旅致远123124#$$%信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司北京酷旅致远信息技术有限公司';
+$note_arr = YcfNotice::formatPrintNote($detail['remark']);
+if($detail['checkin'] == $detail['checkout'])
+{
+	$unit = '张';
+	$num_text = '数量：';
+	$price_text = '门票价合计';
+	$rom_type_text = '门票';
+	$rom_type_text_en	=	'Ticket';
+	$use_date_html = '
+<tr>
+<td height="20">使用日期：</td>
+<td width="134" colspan="3" rowspan="2"  valign="middle" style="border-bottom:#000 1px solid;"><strong>' . YcfNotice::stripDateZero($detail['checkin']) . '</strong></td>  
+</tr>
+<tr>
+<td height="20">Use Time：</td>
+</tr>';
+}
+else
+{
+	$unit = '间';	
+	$num_text = '房间数量：';
+	$price_text = '房价合计';
+	$rom_type_text = '产品名称';
+	$rom_type_text_en	=	'Product Name';
+	//计算有多少晚
+	$days = YcfNotice::daysbetweendates($detail['checkin'], $detail['checkout']);
+	$use_date_html = '
+<tr>
+<td height="20">入住日期：</td>
+<td width="134" rowspan="2" valign="middle" style="border-bottom:#000 1px solid;"><strong>' . YcfNotice::stripDateZero($detail['checkin']) . '</strong></td>
+<td width="86">退房日期：</td>
+<td width="90" rowspan="2" valign="middle" style="border-bottom:#000 1px solid;"><strong>' . YcfNotice::stripDateZero($detail['checkout']) . '</strong></td>
+<td width="87">&nbsp;</td>
+<td width="90" rowspan="2" align="center" valign="bottom" style="border-bottom:#000 1px solid;">' . $days . '</td>
+<td width="35">&nbsp;</td>
+</tr>
+<tr>
+<td height="20">Check In：</td>
+<td>Check Out：</td>
+<td>天数总计：</td>
+<td>晚</td>
+</tr>
+';
+}
+?>
+<body>
+ <form id="f1" runat="server">
+ <br />
+<table class="table1" width="700" border="0" align="center" cellpadding="3" cellspacing="0">
+  <tr>
+    <td width="135"> 
+    <input name="imgUpdateFax" id="imgUpdateFax" alt="要出发" src="http://cdn.yaochufa.com/images/faxlogo.jpg?" style="height:110px" type="image"/>
+    </td>
+    <td class="ptop" width="467" align="center">
+   <h1>  
+    广州酷旅旅行社有限公司</h1><h2>北京酷旅致远信息技术有限公司</h2><h3>www.yaochufa.com</h3>
+    </td>
+     <td style="vertical-align: top;text-align: right; width:400px;">
+	 <span class="btn-blue" onclick="javascript:window.close()">关闭</span>
+     <span class="btn-blue" onclick="window.print()">打印</span>
+     <p class="fn-clear">发单人(Contact): <b> <?php printf('%s',$detail['billName']); ?></b></p>
+	 </td>
+  </tr>
+</table>
+<table class="table2" width="620" border="0" align="center" cellpadding="3" cellspacing="0">
+  <tr>
+    <td colspan="5" align="center" style="border-bottom:0px; font-size:17px; ">
+        <input type="text" name="txtHotelResortChn" value="酒店客房预订单" 
+            style=" border-style: none; border-color: inherit; border-width: 0px; width:420px; text-align: center;" /></td>
+  </tr>
+  <tr>
+    <td colspan="5" align="center" style="border-bottom:0px; font-size:14px; ">
+        <input type="text" name="txtHotelResortEng"value="New Reseration" 
+            style=" border-style: none; border-color: inherit; border-width: 0px; width:420px; text-align: center;" /></td>
+  </tr>
+  <tr>
+    <td colspan="5" align="right" style="border-bottom:0px; text-align:right;" ><div style="height:20px; line-height:20px; padding-top:3px;padding-right:10px; font-size:14px; text-align:right;">订单号码 Reseration No：<b><?php printf('%s',$detail['orderNo']); ?></b></div></td>
+  </tr>
+  <tr>
+    <td colspan="5" align="right">&nbsp;</td>
+  </tr>
+  <tr>
+    <td width="90" height="20">酒店名称：</td>
+    <td colspan="1" rowspan="2">  <input type="text" name="txtResortName" value="<?php printf('%s',$detail['productName']); ?>" style=" border:0px; width:270; " />   </td>
+    <td width="94">酒店联系人：</td>
+    <?php 
+    //$reserver_or_odertype = '';
+    if($order_type = YcfApiData::displayWorkOrderListType($detail['checkin'],$detail['objectType']))
+    	$reserver_or_odertype = $order_type;
+    elseif($order_type = $detail['statusName'])
+	    $reserver_or_odertype = $order_type;
+    else
+    	$reserver_or_odertype = YcfNotice::getLoginReserver();
+    ?>
+    <td width="113" rowspan="2"><input type="text" name="txtContact" value="<?php printf('%s',$reserver_or_odertype); ?>" style="border: 0px none; width: 300px; font-size: 34px; height: 68px;"/></td>
+  </tr>
+  <tr>
+    <td height="20">Hotel Name：</td>
+    <td>Contact：</td>
+  </tr>
+  <tr>
+    <td height="20">电话：</td>
+    <td width="232" rowspan="2"><input type="text" name="txtTel" value='<?php printf('%s',YcfNotice::getLoginMobile()); ?>'  style=" border:0px; width:150px; "/></td>
+    <td width="58">传真：</td>
+    <td colspan="2" rowspan="2"><input type="text" name="txtFax" value='<?php printf('%s',$detail['providerFax']); ?>'  style=" border:0px; width:300px; "/></td>
+  </tr>
+  <tr>
+    <td height="20">Tel：</td>
+    <td>Fax：</td>
+  </tr>
+  <tr>
+    <td height="20" colspan="5">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="20">来自：</td>
+    <td colspan="1" rowspan="2">酷旅预订部 </td>
+    <td rowspan="2">传真：</td>
+    <td colspan="2" rowspan="4">
+    <textarea name="fax" class="fax-tel" style=" border:0px; width:300px; font-size:11px; line-height:15px; min-height:90px;overflow:visible;" rows="3" cols="30">020-83969959(备用 020-62209323)  
+	<?php printf('%s',YcfViewWidget::displayRoomTypeInPrint($detail['itemDeductionRemark'])); ?>
+	</textarea>
+    </td>
+  </tr>
+  <tr>
+    <td height="20">From：</td>
+  </tr>
+ <tr>
+    <td height="20">电话</td>
+    <td rowspan="2" align="left">020-62209329/9312/9325/9327/9330<br />如客人到前台需补单预定，请致电4001181166
+</td>
+    <td rowspan="2">Fax：</td>
+  </tr>
+  <tr>
+    <td height="20">Tel:</td>
+  </tr>
+</table>
+<table class="table3" width="635" border="0" align="center" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td width="98" height="20">客人姓名：</td>
+    <td colspan="3" rowspan="2" valign="middle" style="border-bottom:#000 1px solid;">
+	<strong><?php printf('%s',$detail['userName']); ?></strong>
+	&nbsp;&nbsp;&nbsp;
+	<strong>
+	<?php //printf('%s',YcfNotice::formatPhoneNumber($detail['productType'],$detail['userPhone'])); ?>
+	<?php printf('%s',$detail['userPhone']); ?>
+	</strong>
+	</td>
+    <td colspan="3" rowspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="20">Guest Name：</td>
+  </tr>
+  <?php printf('%s',$use_date_html); ?>
+  <tr>
+    <td height="20"><?php printf('%s',$rom_type_text); ?>：</td>
+
+    <td colspan="6" rowspan="2" valign="middle" style="border-bottom:#000 1px solid;"><input type="text" name="txtRoomType" value="<?php printf('%s',$detail['itemName']); ?>" style=" border:0px; width:518px; " /></td>
+  </tr>
+  <tr>
+    <td height="20"><?php printf('%s',$rom_type_text_en); ?>：</td>
+  </tr>
+  <tr>
+    <td height="20"><?php printf('%s',$price_text); ?>：</td>
+    <td colspan="6" rowspan="2" valign="middle" style="border-bottom:#000 1px solid;"><input type="text" name="txtContractPrice" value="<?php printf('%s',$detail['price']); ?> 元" style=" border:0px; width:460px; " /></td>
+  </tr>
+  <tr>
+    <td height="20">Price：</td>
+  </tr>
+  <tr>
+    <td height="30" valign="bottom">
+	  <?php printf('%s',$num_text); ?>
+      <div style="position:relative;">
+        <img src="http://cdn.yaochufa.com/images/gongzhang.png" width="130"  height="130" style="position:absolute; top:-20px; left:514px;"  />
+      </div>
+    </td>
+    <td colspan="4" valign="bottom" style="border-bottom:#000 1px solid;"><input type="text" name="txtRoomAmount" value='<?php printf('%s %s',$detail['itemCount'],$unit); ?>'  style=" border:0px; width:400px;"/></td>
+    <td colspan="3" rowspan="4" align="center" valign="middle"></td>
+  </tr>
+  
+  <tr>
+    <td height="30" valign="bottom">
+	  <?php //printf('%s','房态'); ?>
+    </td>
+    <td colspan="4" valign="bottom" style="border-bottom:#000 1px solid;"><input type="text" name="txtRoomAmount" value='<?php //printf('%s',YcfViewWidget::displayRoomTypeInPrint($detail['itemDeductionRemark'])); ?>'  style=" border:0px; width:400px;"/></td>
+    <td colspan="3" rowspan="4" align="center" valign="middle"></td>
+  </tr>
+  
+  <tr>
+    <td height="30" valign="bottom">
+	  付款方式
+    </td>
+    <td colspan="4" valign="bottom" style="border-bottom:#000 1px solid;"><input type="text" name="txtRoomAmount" value='<?php printf('%s',$detail['payPlatformName']); ?>'  style=" border:0px; width:400px;"/></td>
+    <td colspan="3" rowspan="4" align="center" valign="middle"></td>
+  </tr>
+  <tr>
+    <td height="30" valign="bottom">
+	  付款周期
+    </td>
+    <td colspan="4" valign="bottom" style="border-bottom:#000 1px solid;"><input type="text" name="txtRoomAmount" value='<?php printf('%s',$detail['paymentCycleName']); ?>'  style=" border:0px; width:400px;"/></td>
+    <td colspan="3" rowspan="4" align="center" valign="middle"></td>
+  </tr>
+  
+  <tr>
+    <td height="30" valign="bottom">特殊要求：</td>
+    <td colspan="4" valign="bottom" style="border-bottom:#000 1px solid;">
+        <input type="text" name="txtRemark" value="<?php printf('%s',$note_arr[0]); ?>" 
+            style=" border-style: none; border-color: inherit; border-width: 1px; width:400px;;height:25px; "   /></td>
+  </tr>
+  <?php if(($count = count($note_arr))>1):
+    for($i=1;$i<$count;$i++):
+    ?>
+    <tr>
+      <td height="30" valign="bottom"></td>
+      <td colspan="4" valign="bottom" style="border-bottom:#000 1px solid;">
+          <input type="text" name="txtRemark2" value="<?php printf('%s',$note_arr[$i]); ?>" 
+              style=" border-style: none; border-color: inherit; border-width: 1px; width:400px;;height:25px; "   /></td>
+    </tr>
+    <?php endfor; ?>
+  <?php endif; ?>
+</table>
+<h2 style=" margin:10px auto 0; padding:0;width:620px;">
+        <input type="text" 
+        name="txtRemark3" value="" 
+        style=" border-bottom:#000 1px solid; width:640px;  height:25px; border-left-style: none; border-left-color: inherit; border-left-width: 0px; border-right-style: none; border-right-color: inherit; border-right-width: 0px; border-top-style: none; border-top-color: inherit; border-top-width: 0px;display:none" />
+        请保密我司底价,如客人需要开发票请与我司联系!
+</h2>
+<table class="table4" width="620" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="30" colspan="4">酒店方确认并同意以下内容</td>
+  </tr>
+  <tr>
+    <td height="30" colspan="4">我酒店已收到此预订，并将根据要求为客人安排房间。</td>
+  </tr>
+  <tr>
+    <td width="243" height="30" colspan="2" valign="bottom">本单确认：（  ） </td>
+     <td height="30" colspan="2" valign="bottom">本单不确认：（   ） </td>
+   
+  </tr>
+  <tr>
+    <td height="30" colspan="4" valign="bottom" style="border-bottom:#000 1px solid; width: 70px;">确认号：&nbsp;</td>
+  </tr>
+  <tr>
+    <td height="40" colspan="2" valign="bottom"><div style=" float:left;width:70px; height:28px; line-height:40px;">确认人：</div><div style=" float:left;height:28px; width:220px; border-bottom:#000 1px solid;"></div></td>
+    <td width="52" height="30" valign="bottom">日期：</td>
+    <td width="262" valign="bottom" style="border-bottom:#000 1px solid;">&nbsp;</td>
+  </tr>
+</table>
+<h1 style=" margin:0 auto;width:620px; height:20px; border-bottom:#000 1px dotted;"></h1>
+<h2 style=" margin:0 auto;padding-top:3px;width:620px;text-align:center;">请回传盖章签字确认！并附价格及账户信息，或我方根据协议自理！</h2>
+<br />
+<br />
+<br />
+</form>
+</body>
+<?php $this->renderPartial('application.modules.admini.views._include.metro_tongji') ?>
+</html>   
+
+
+<ul>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li></li>
+</ul>
+
+
+<!-- 原来html -->
+<span  style="color:#E53333;">
+	<a href="http://www.yaochufa.com/package/1128" target="_blank">
+		<span style="color:#E53333;"><u>【立即预定】</u></span>
+	</a>
+</span>
+<!-- 新html -->
+<span class='fun-booking' style="color:#E53333;">
+	<a href="http://www.yaochufa.com/package/1128" target="_blank">
+		<span style="color:#E53333;"><u>【立即预定】</u></span>
+	</a>
+</span>

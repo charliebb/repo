@@ -1,0 +1,41 @@
+.margin10{margin: 10px 0;}
+.nav-bg-img img{width: 100%; height: 686px;}
+
+.hd-bg-des{  position: absolute; top: 50%; text-align: center; font-size: 16px; width: 960; left: 50%; margin-left: -200px;}
+.hd-bg-des div{/*margin: 0 auto;*/}
+
+.container{width: 960px; /*height: 1500px;*/ margin: 0 auto; margin-bottom: 100px;}
+
+/*中间内容*/
+.content-box{width:958px ; /*height:1400px;*/ border: 1px solid #ddd; }
+/*土地信息*/
+.land-info{margin-top: 20px;}
+.land-info ul{margin: 0 auto; width: 416px; font-size: 14px;}
+.land-info li{margin-right: 5px;}
+.land-info-tt{}
+.land-info-des{margin-top: 10px; color: red; text-align: center; font-size: 14px;}
+/*发布logo*/
+.release-logo{text-align: center; margin: 0 auto; margin-top: 50px;}
+.release-logo img{display: inline-block;}
+
+/*总体评价*/
+.rate{ width: 400px;margin: 0 auto;margin-top: 10px;padding: 5px; border-bottom: 2px solid #323232; font-size: 15px;}
+.rate-l p{margin-top: 16px;}
+.score{font-size: 30px; color: red;}
+
+.assessment-box{margin-top: 40px;}
+.accessment-l{margin-left: 60px;font-size: 14px;}
+.accessment-r{margin-right: 60px;font-size: 14px;}
+
+.zh-des{padding-top: 10px; font-size: 16px; font-weight: bold;}
+.en-des{padding-top: 5px; font-size: 14px;}
+
+
+.form-1{font-size: 14px;}
+.form-1 input{ width: 220px; height: 15px; line-height: 15px; padding: 4px 15px;  font-size: 14px; border: 1px solid #c6c6c6; border-radius: 4px;}
+.form-1 .form-tb{padding: 0 60px;}
+
+.form-tb .tt{  display: inline-block; text-align: left; width: 90px;}
+
+.submit-btn-box{text-align: center; margin: 20px 0;}
+.submit-btn{ width: 135px; height: 40px; line-height: 40px; text-align: center; color: #FFF; font-size: 18px; background: #2586d4; border: none; outline: none; cursor: pointer; border-radius: 20px;  box-shadow: 0px 5px 5px #565656;}
